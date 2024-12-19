@@ -1,11 +1,11 @@
 
 export default function TrackerInfo({data}) {
   return (
-    <section className="relative top-14 rounded-md border max-w-[75rem] bg-white mx-auto p-3 grid grid-cols-4 shadow-lg gap-4">
+    <section className="relative top-14 rounded-md border max-w-[75rem] bg-white mx-auto p-3 grid grid-cols-4 shadow-xl gap-4 z-10">
         {
             data ? (
                 <>
-                    <div className="p-1 border">
+                    <div className="p-1 info-container">
                         <span className="font-semibold">IP ADDRESS</span>
                         {data.ip ? (
                             <p>{data.ip}</p>
@@ -14,7 +14,7 @@ export default function TrackerInfo({data}) {
                         )}
                     </div>
 
-                    <div className="p-1 border">
+                    <div className="p-1  info-container">
                         <span className="font-semibold">LOCATION</span>
                         
                         {data.location ? (
@@ -26,7 +26,7 @@ export default function TrackerInfo({data}) {
                             <p>Not found</p>
                         )}
                     </div>
-                    <div className="p-1 border">
+                    <div className="p-1  info-container">
                         <span className="font-semibold">TIMEZONE</span>
                         {data.location ? (
                             <p>UTC {data.location?.timezone}</p>
@@ -35,7 +35,7 @@ export default function TrackerInfo({data}) {
                         )}
 
                     </div>
-                    <div className="p-1 border">
+                    <div className="info-container-last p-[1rem]">
                         <span className="font-semibold">ISP</span>
                         {data.isp ? (
                             <p>{data.isp}</p>

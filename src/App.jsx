@@ -2,7 +2,9 @@ import { useEffect, useState } from "react"
 import TrackerInfo from "./components/TrackerInfo"
 import TrackerInput from "./components/TrackerInput"
 import './App.css'
-
+import TrackerGeoMap from "./components/TrackerGeoMap"
+import { MapContainer, TileLayer, useMap, Marker, Popup} from 'react-leaflet'
+import 'leaflet/dist/leaflet.css';
 
 function App() {
 // El usuario ha de ver su ip y ver el mapa con un icono en la primera carga de la pagina
@@ -16,7 +18,7 @@ function App() {
 
   useEffect(() => {
     // llamar a geo ipify api    
-    // fetchTrackerInfo(isSearching)
+    fetchTrackerInfo(isSearching)
     if (isSearching) {
       console.log("buscando")
     }else{
@@ -40,26 +42,32 @@ function App() {
   }
 
   return (
-    <section className="border">
-      <div className="p-8" id="bg-pattern-top">
-        <section className="p-2 max-w-[80rem] flex items-center justify-center flex-col mx-auto gap-3">
-          <h1 className="text-3xl font-semibold text-white">IP Address Tracker</h1>
-          <TrackerInput 
-            setIsSearching={setIsSearching}
-            setSearchingInfo={setSearchingInfo}
+    <>
+      <section className="border h-full z-[999]">
+        <div className="p-8" id="bg-pattern-top">
+          <section className="p-2 max-w-[80rem] flex items-center justify-center flex-col mx-auto gap-3">
+            <h1 className="text-3xl font-semibold text-white">IP Address Tracker</h1>
+            <TrackerInput 
+              setIsSearching={setIsSearching}
+              setSearchingInfo={setSearchingInfo}
+            />
+          </section>
+          
+          <TrackerInfo
+            data={data}
           />
-        </section>
-        
-        <TrackerInfo
-          data={data}
-        />
+        </div>
+
+      </section>
+      <div className="border h-[650px] bg-red-300">
+        {data && (
+          <TrackerGeoMap
+            data={data}
+          />
+        )}
       </div>
 
-
-      <section className="map">
-        
-      </section>
-    </section>
+    </>
   )
 }
 
