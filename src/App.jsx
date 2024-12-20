@@ -28,6 +28,9 @@ function App() {
   }, [isSearching])
 
 
+//  bug: deja buscar solo una vez, luego no carga ni la info ni el mapa
+
+
   const fetchTrackerInfo = async (isSearching) => {
     setIsLoading(true)
     try {
