@@ -19,23 +19,29 @@ function App() {
   useEffect(() => {
     // llamar a geo ipify api    
     fetchTrackerInfo(isSearching)
-    // if (isSearching) {
-    //   console.log("buscando")
-    // }else{
-    //   console.log("cargando")
-    // }
 
-  }, [isSearching])
+    if (condition) {
+      
+    }
+  }, [isSearching, searchingInfo])
 
 
-//  bug: deja buscar solo una vez, luego no carga ni la info ni el mapa
+  // TODO: COMPROBAR SI ES UN DOMINIO O IP, Y VALIDAR CUALQUIER QUE SEA, ahora solo busca por ip
+  const isDomain = () => {
 
+  }
+
+  const isIp = () => {
+
+  }
 
   const fetchTrackerInfo = async (isSearching) => {
     setIsLoading(true)
     try {
       const response = await fetch(`https://geo.ipify.org/api/v2/country,city?apiKey=${key}${isSearching ?`&ipAddress=${searchingInfo}` :''}`) 
       const data = await response.json()
+
+      // parametro domain= --> si el usuario busca por dominio
 
       setData(data)
 
