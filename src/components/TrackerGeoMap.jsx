@@ -1,11 +1,27 @@
 import { MapContainer, TileLayer, Marker, Popup, useMap} from 'react-leaflet'
 import 'leaflet/dist/leaflet.css';
 import { useEffect } from 'react';
+import L from 'leaflet'
+
+import icon from 'leaflet/dist/images/marker-icon.png'
+import iconShadow from 'leaflet/dist/images/marker-shadow.png'
 
 export default function TrackerGeoMap({data}) {
 
   const lat = data?.location.lat
   const lng = data?.location.lng
+
+//   const DefaultIcon = L.icon({
+//     iconUrl: icon,
+//     shadowUrl: iconShadow
+//   })
+
+//   L.marker.prototype.options.icon = DefaultIcon
+
+
+  
+
+//   L.icon.Default.imagePath = 'img/'
 
   const Centerer = ({center}) =>{
     const map = useMap()

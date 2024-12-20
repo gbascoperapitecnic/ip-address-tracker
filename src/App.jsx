@@ -3,8 +3,6 @@ import TrackerInfo from "./components/TrackerInfo"
 import TrackerInput from "./components/TrackerInput"
 import './App.css'
 import TrackerGeoMap from "./components/TrackerGeoMap"
-import { MapContainer, TileLayer, useMap, Marker, Popup} from 'react-leaflet'
-import 'leaflet/dist/leaflet.css';
 
 function App() {
 // El usuario ha de ver su ip y ver el mapa con un icono en la primera carga de la pagina
@@ -21,11 +19,11 @@ function App() {
   useEffect(() => {
     // llamar a geo ipify api    
     fetchTrackerInfo(isSearching)
-    if (isSearching) {
-      console.log("buscando")
-    }else{
-      console.log("cargando")
-    }
+    // if (isSearching) {
+    //   console.log("buscando")
+    // }else{
+    //   console.log("cargando")
+    // }
 
   }, [isSearching])
 
@@ -37,7 +35,6 @@ function App() {
       const data = await response.json()
 
       setData(data)
-      console.log(data)
 
     } catch (error) {
       console.log(error) 
