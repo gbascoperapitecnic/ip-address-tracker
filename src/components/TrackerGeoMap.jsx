@@ -9,7 +9,7 @@ export default function TrackerGeoMap({data}) {
   const lng = data?.location.lng
 
   const mapIcon = new Icon({
-    iconUrl: '/public/img/icon-location.svg',
+    iconUrl: require('/img/icon-location.svg'),
     iconSize: [30, 40],
     iconAnchor: [lat, lng],
     popupAnchor: [-24, -8]
