@@ -14,6 +14,8 @@ function App() {
   const [searchingInfo, setSearchingInfo] = useState("")
   const [data, setData] = useState(null)
 
+  const [isLoading, setIsLoading] = useState(false)
+
   const key = import.meta.env.VITE_API_KEY
 
   useEffect(() => {
@@ -29,6 +31,7 @@ function App() {
 
 
   const fetchTrackerInfo = async (isSearching) => {
+    setIsLoading(true)
     try {
       const response = await fetch(`https://geo.ipify.org/api/v2/country,city?apiKey=${key}${isSearching ?`&ipAddress=${searchingInfo}` :''}`) 
       const data = await response.json()
@@ -38,12 +41,14 @@ function App() {
 
     } catch (error) {
       console.log(error) 
+    }finally{
+      setIsLoading(false)
     }
   }
 
   return (
     <>
-      <section className="border h-full z-[999]">
+      <section className="border h-full z-10 relative">
         <div className="p-8" id="bg-pattern-top">
           <section className="p-2 max-w-[80rem] flex items-center justify-center flex-col mx-auto gap-3">
             <h1 className="text-3xl font-semibold text-white">IP Address Tracker</h1>
@@ -55,11 +60,12 @@ function App() {
           
           <TrackerInfo
             data={data}
+            isLoading={isLoading}
           />
         </div>
 
       </section>
-      <div className="border h-[650px] bg-red-300">
+      <div className="border h-[650px] bg-red-300 z-0">
         {data && (
           <TrackerGeoMap
             data={data}

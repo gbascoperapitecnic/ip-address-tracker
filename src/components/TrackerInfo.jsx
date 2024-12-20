@@ -1,8 +1,10 @@
 
-export default function TrackerInfo({data}) {
+export default function TrackerInfo({data, isLoading}) {
   return (
-    <section className="relative top-14 rounded-md border max-w-[75rem] bg-white mx-auto p-3 grid grid-cols-4 shadow-xl gap-4 z-10">
-        {
+    <section className="relative top-20 rounded-md border max-w-[75rem] bg-white mx-auto p-3 grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 shadow-xl gap-4 ">
+        {isLoading ? (
+            <p>Loading...</p>
+        ):(
             data ? (
                 <>
                     <div className="p-1 info-container">
@@ -47,6 +49,7 @@ export default function TrackerInfo({data}) {
             ):(
                 <p>No se ha podido cargar información.</p>
             )
+        )
         }
     </section>  
   )
