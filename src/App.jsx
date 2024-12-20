@@ -4,6 +4,7 @@ import TrackerInput from "./components/TrackerInput"
 import './App.css'
 import TrackerGeoMap from "./components/TrackerGeoMap"
 
+
 function App() {
 // El usuario ha de ver su ip y ver el mapa con un icono en la primera carga de la pagina
 //también puede buscar cualquier ip o dominio y mostrar su info
@@ -20,20 +21,19 @@ function App() {
     // llamar a geo ipify api    
     fetchTrackerInfo(isSearching)
 
-    // if (condition) {
-      
-    // }
+
   }, [isSearching, searchingInfo])
 
 
+
   // TODO: COMPROBAR SI ES UN DOMINIO O IP, Y VALIDAR CUALQUIER QUE SEA, ahora solo busca por ip
-  const isDomain = () => {
+  // const isDomain = () => {
 
-  }
+  // }
 
-  const isIp = () => {
+  // const isIp = () => {
 
-  }
+  // }
 
   const fetchTrackerInfo = async (isSearching) => {
     setIsLoading(true)
