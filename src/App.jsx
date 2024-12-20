@@ -71,7 +71,12 @@ function App() {
         </div>
 
       </section>
-      <div className="border h-[650px] bg-red-300 z-0">
+      <div className="border h-[650px] z-0">
+        {isLoading && (
+          <div className="w-100 text-center h-full flex justify-center items-center">
+            <p>Loading...</p>
+          </div>
+        )}
         {data && (
           <TrackerGeoMap
             data={data}
