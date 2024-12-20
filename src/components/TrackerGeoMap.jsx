@@ -32,7 +32,7 @@ export default function TrackerGeoMap({data}) {
         />
         <Marker position={[lat, lng]} className={"p-10"}  icon={mapIcon}  >
             <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
+              hello vro
             </Popup>
         </Marker>
     </MapContainer>
