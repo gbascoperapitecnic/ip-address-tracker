@@ -20,9 +20,9 @@ function App() {
     // llamar a geo ipify api    
     fetchTrackerInfo(isSearching)
 
-    if (condition) {
+    // if (condition) {
       
-    }
+    // }
   }, [isSearching, searchingInfo])
 
 
