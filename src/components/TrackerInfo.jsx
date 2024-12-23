@@ -1,7 +1,7 @@
 
 export default function TrackerInfo({data, isLoading}) {
   return (
-    <section className="relative top-24 rounded-md border max-w-[75rem] bg-white mx-auto p-3 grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 shadow-xl gap-4 ">
+    <section className="relative top-24 rounded-xl border max-w-[75rem] bg-white mx-auto p-3 grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 shadow-xl gap-4 ">
         {isLoading ? (
             <p>Loading...</p>
         ):(

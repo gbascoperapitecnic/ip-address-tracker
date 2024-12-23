@@ -7,8 +7,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
-// El usuario ha de ver su ip y ver el mapa con un icono en la primera carga de la pagina
-//también puede buscar cualquier ip o dominio y mostrar su info
 
   const [isSearching, setIsSearching] = useState(false)
   const [searchingInfo, setSearchingInfo] = useState("")
