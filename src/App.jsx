@@ -3,7 +3,8 @@ import TrackerInfo from "./components/TrackerInfo"
 import TrackerInput from "./components/TrackerInput"
 import './App.css'
 import TrackerGeoMap from "./components/TrackerGeoMap"
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 // El usuario ha de ver su ip y ver el mapa con un icono en la primera carga de la pagina
@@ -12,36 +13,64 @@ function App() {
   const [isSearching, setIsSearching] = useState(false)
   const [searchingInfo, setSearchingInfo] = useState("")
   const [data, setData] = useState(null)
+  const [searchError, setSearchError] = useState(false)
+
 
   const [isLoading, setIsLoading] = useState(false)
 
   const key = import.meta.env.VITE_API_KEY
 
   useEffect(() => {
-    // llamar a geo ipify api    
     fetchTrackerInfo(isSearching)
-
 
   }, [isSearching, searchingInfo])
 
+  // validar busqueda del usuario --> 
+  const validateInput = (input) => {  
+    if (validIp(input) || validDomain(input)) {
+      return validDomain(input) ? `&domain=${input}`: `&ipAddress=${input}` 
+    }else{
+      notifyError()
+      return ''
+    }
+ }
 
+ 
+  const notifyError = () => toast.error("Dominio o Ip Incorrectos", {
+    position: "top-right",
+    className: "bg-dark",
+    autoClose: 2000,
+    theme: "colored"
+  });
 
-  // TODO: COMPROBAR SI ES UN DOMINIO O IP, Y VALIDAR CUALQUIER QUE SEA, ahora solo busca por ip
-  // const isDomain = () => {
+  
 
-  // }
+  const validIp = (ip) => {
+    // ipv4 --> x1.x2.x3.x4 --> 0 <= Xi <= 255
+    if (typeof (ip) !== 'string' || ip.split(".").length !== 4) {
+      return false
+    }
 
-  // const isIp = () => {
+    for (let octeto of ip.split(".")) {
+      if (0 > octeto || octeto > 255) {
+        return false
+      }
+    }
+    return true
+  }
 
-  // }
+  const validDomain = (domain) => {
+    const pattern = new RegExp(/^(((http|https):\/\/|)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}(:[0-9]{1,5})?(\/.*)?)$/)
+
+    return pattern.test(domain)
+  }
+
 
   const fetchTrackerInfo = async (isSearching) => {
     setIsLoading(true)
     try {
-      const response = await fetch(`https://geo.ipify.org/api/v2/country,city?apiKey=${key}${isSearching ?`&ipAddress=${searchingInfo}` :''}`) 
+      const response = await fetch(`https://geo.ipify.org/api/v2/country,city?apiKey=${key}${isSearching ? validateInput(searchingInfo) : ''}`) 
       const data = await response.json()
-
-      // parametro domain= --> si el usuario busca por dominio
 
       setData(data)
 
@@ -83,7 +112,7 @@ function App() {
           />
         )}
       </div>
-
+      <ToastContainer/>
     </>
   )
 }
